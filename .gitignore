@@ -1,3 +1,13 @@
+# my ignore file
+*.pid
+*.log
+*.key
+devel.yaml
+conf.yaml
+conf.json
+dist/*
+other.vue
+
 # Logs
 logs
 *.log
