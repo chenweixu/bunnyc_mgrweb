@@ -7,18 +7,22 @@ import 'element-ui/lib/theme-chalk/index.css';
 import App from './app.vue';
 import VueRouter from 'vue-router'
 
-
 import blank from './components/blank.vue'
-import mybody from './components/body.vue'
-import networkping from './components/networkping.vue'
-import networkurltest from './components/networkurltest.vue'
-import networkportcheck from './components/networkportcheck.vue'
-import hostshow from './components/hostshow.vue'
-import weblogic from './components/weblogic.vue'
-import nginx from './components/nginx.vue'
-import memcached from './components/memcached.vue'
-import other from './components/other.vue'
 
+import hostcmd from './components/host/remotecmd.vue'
+import hostshow from './components/host/show.vue'
+
+import networkping from './components/network/ping.vue'
+import networkurltest from './components/network/urltest.vue'
+import networkportcheck from './components/network/portcheck.vue'
+
+import weblogic from './components/service/weblogic.vue'
+import nginx from './components/service/nginx.vue'
+import memcached from './components/service/memcached.vue'
+
+import confhost from './components/conf/host.vue'
+
+import other from './components/other.vue'
 
 // Vue.use(ElementUI, { size: 'medium', zIndex: 2000 });
 Vue.use(VueRouter)
@@ -28,7 +32,7 @@ Vue.use(ElementUI);
 const routes = [
   { path: '/', component: blank },
   { path: '/index', component: blank },
-  { path: '/hostcmd', component: mybody },
+  { path: '/hostcmd', component: hostcmd },
   { path: '/networkping', component: networkping },
   { path: '/urltest', component: networkurltest },
   { path: '/portcheck', component: networkportcheck },
@@ -37,6 +41,7 @@ const routes = [
   { path: '/nginx', component: nginx },
   { path: '/memcached', component: memcached },
   { path: '/other', component: other },
+  { path: '/confhost', component: confhost },
 ]
 
 const router = new VueRouter({

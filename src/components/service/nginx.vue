@@ -1,0 +1,143 @@
+<template>
+<div id="nginx" style="width: 100%">
+  <el-main>
+<h2>nginx manager</h2>
+  <el-tabs v-model="activeName2" type="border-card" @tab-click="handleClick">
+
+    <el-tab-pane label="应用管理" name="single">
+    <el-row :gutter="5">
+      <el-col :span="6">
+      <el-input v-model="server" placeholder="目标主机ipv4" clearable></el-input>
+      </el-col>
+      <el-col :span="12">
+      <el-button type="primary" v-on:click="nginxManager('start')">启动</el-button>
+      <el-button type="primary" v-on:click="nginxManager('stop')">停止</el-button>
+      <el-button type="primary" v-on:click="nginxManager('reload')">重载配置</el-button>
+      <el-button type="primary" v-on:click="nginxManager('show_access_log')">访问日志</el-button>
+      <el-button type="primary" v-on:click="nginxManager('show_error_log')">错误日志</el-button>
+      </el-col>
+    </el-row>
+    </el-tab-pane>
+
+    <el-tab-pane label="IP地址屏蔽" name="group">
+    <el-row :gutter="5">
+      <el-col :span="6">
+      <el-input v-model="lockip" placeholder="锁定IP" clearable></el-input>
+    </el-col>
+    <el-col :span="10">
+      <el-button type="primary" v-on:click="nginxManager('lock')">锁定</el-button>
+      <el-button type="primary" v-on:click="nginxManager('ulock')">解锁</el-button>
+      <el-button type="primary" v-on:click="nginxManager('showlock')">查看当前已锁定IP</el-button>
+      </el-col>
+    </el-row>
+
+    </el-tab-pane>
+
+  </el-tabs>
+
+    <div style="background-color: #C0C0C0;">
+      <template v-if="displayData">
+      <h4>执行结果：</h4>
+          <span v-html="rundata"></span>
+      </template>
+    </div>
+
+
+  </el-main>
+</div>
+</template>
+
+
+<script>
+  import axios from "axios"
+  var opsurl = 'api/v2/service'
+  var data
+  var task
+
+  export default {
+    data() {
+
+      return {
+        displayData: false,
+        rundata: '',
+        server: '',
+        activeName2: 'single',
+        nginxip: '',
+        lockip: '',
+      }
+    },
+    methods: {
+      handleClick(tab, event) {
+        this.displayData = false;
+        // console.log(tab, event);
+      },
+      nginxManager(mess) {
+        this.displayData = false;
+        console.log(mess)
+
+        data = {
+            "key": "c1c2",
+            "obj": "service",
+            "content": {
+                "unit": "nginx",
+                "task": mess,
+                "server": this.server,
+                }
+        };
+        if (mess == "lock" || mess == "ulock") {
+          delete data.content.server
+          data.content.ip = this.lockip
+        } else if (mess == "showlock") {
+          delete data.content.server
+        }
+
+        console.log(data)
+
+        axios.post(opsurl, data)
+        .then((res) => {
+          if (res.status == 200) {
+            console.log(res.data)
+            if (res.data.recode == 0) {
+              if (mess=='start') {
+                this.$notify({type: 'success', title: '成功',message: '启动成功'});
+              } else if (mess=='stop') {
+                this.$notify({type: 'success', title: '成功',message: '停止成功'});
+              } else if (mess=='reload') {
+                this.$notify({type: 'success', title: '成功',message: '重载成功'});
+              } else if (mess=='show_access_log') {
+                this.$notify({type: 'success', title: '成功',message: '显示访问日志成功'});
+                this.displayData = true;
+                this.rundata = '<pre>'+res.data.redata+'</pre>';
+              } else if (mess=='show_error_log') {
+                this.$notify({type: 'success', title: '成功',message: '显示错误日志成功'});
+                this.displayData = true;
+                this.rundata = '<pre>'+res.data.redata+'</pre>';
+                // this.rundata = res.data.redata;
+              } else if (mess == "lock") {
+                this.$notify({type: 'success', title: '成功',message: '锁定IP成功'});
+              } else if (mess == "ulock") {
+                this.$notify({type: 'success', title: '成功',message: '解锁IP成功'});
+              } else if (mess == "showlock") {
+                this.$notify({type: 'success', title: '成功',message: '显示锁定IP'});
+                this.displayData = true;
+                this.rundata = '<pre>'+res.data.redata+'</pre>';
+              }
+            } else {
+              this.$notify({type: 'error', title: '失败',message: res.data.redata});
+            }
+          }
+        })
+        .catch((error) => {
+          // 这里是处理错误的回调
+          this.$notify({type: 'error', title: '失败',message: '操作失败'});
+          console.log(error);
+        });
+      }
+
+
+    }
+  };
+
+</script>
+
+

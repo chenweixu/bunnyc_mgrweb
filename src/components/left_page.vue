@@ -30,8 +30,15 @@
           <el-menu-item index="3-4"><router-link to="/index">mysql</router-link></el-menu-item>
       </el-submenu>
 
-      <el-menu-item index="4"><router-link to="/other">其它系统</router-link></el-menu-item>
-      <el-menu-item index="5"><router-link to="/index">运维文档</router-link></el-menu-item>
+      <el-submenu index="4">
+        <template slot="title">配置管理</template>
+          <el-menu-item index="4-0"><router-link to="/confhost">主机配置</router-link></el-menu-item>
+          <el-menu-item index="4-1"><router-link to="/confnginx">服务配置</router-link></el-menu-item>
+          <el-menu-item index="4-2"><router-link to="/confuser">用户配置</router-link></el-menu-item>
+      </el-submenu>
+
+      <el-menu-item index="5"><router-link to="/other">其它系统</router-link></el-menu-item>
+      <el-menu-item index="6"><router-link to="/index">运维文档</router-link></el-menu-item>
       </div>
     </el-menu>
   </el-aside>

@@ -4,9 +4,17 @@
 
   <el-tabs v-model="activeName2" type="border-card" @tab-click="handleClick">
     <el-tab-pane label="用户管理" name="first">
-
-      <el-input v-model="inputip" placeholder="请输入ipv4 地址" clearable></el-input>
-      <el-button type="primary">提交</el-button>
+    <el-row :gutter="5" :span="5">
+      <el-col :span="6">
+        <el-input v-model="inputip" placeholder="请输入ipv4 地址" clearable></el-input>
+      </el-col>
+    </el-row>
+      <br>
+    <el-row :gutter="5" :span="5">
+      <el-col :span="6">
+        <el-button type="primary">提交</el-button>
+      </el-col>
+    </el-row>
 
     </el-tab-pane>
 

@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --progress --colors",
-    "server": "webpack-dev-server --open --hot"
+    "start": "cross-env NODE_ENV=development webpack --progress --colors",
+    "server": "webpack-dev-server --open --hot",
+    "build": "cross-env NODE_ENV=production webpack --progress --colors --hide-modules"
   },
   "author": "chenwx",
   "license": "ISC",
@@ -27,13 +28,13 @@
     "vue-loader": "^15.4.2",
     "vue-router": "^3.0.2",
     "vue-template-compiler": "^2.5.17",
-    "webpack": "^4.26.1",
+    "webpack": "^4.29.6",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10"
+    "webpack-dev-server": "^3.2.1",
+    "vue-cli": "^2.9.6"
   },
   "dependencies": {
     "element-ui": "^2.4.11",
-    "vue": "^2.5.17",
-    "vue-cli": "^2.9.6"
+    "vue": "^2.5.17"
   }
 }

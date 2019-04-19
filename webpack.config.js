@@ -2,8 +2,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 var webpack = require('webpack');
 
-
-
 module.exports = {
     mode: 'development',
     // mode: 'production',
@@ -21,9 +19,9 @@ module.exports = {
     },
 
   devServer: {
-    contentBase: "./dist",//本地服务器所加载的页面所在的目录
-    historyApiFallback: true,//不跳转
-    inline: true//实时刷新
+    contentBase: "./dist",          //本地服务器所加载的页面所在的目录
+    historyApiFallback: true,       //不跳转
+    inline: true                    //实时刷新
   },
 
     resolve: {
@@ -32,6 +30,7 @@ module.exports = {
         }
     },
 
+    // 模块加载器
     module: {
         rules: [
             {
