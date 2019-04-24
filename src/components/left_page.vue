@@ -16,14 +16,12 @@
       </el-submenu>
       <el-submenu index="2">
         <template slot="title">网络管理</template>
-          <el-menu-item index="2-1"><router-link to="/networkping">ping测试</router-link></el-menu-item>
-          <el-menu-item index="2-1"><router-link to="/portcheck">端口探测</router-link></el-menu-item>
+          <el-menu-item index="2-1"><router-link to="/networktest">网络探测</router-link></el-menu-item>
           <el-menu-item index="2-2"><router-link to="/index">主机防火墙</router-link></el-menu-item>
           <el-menu-item index="2-3"><router-link to="/index">HOST文件</router-link></el-menu-item>
       </el-submenu>
       <el-submenu index="3">
         <template slot="title">服务管理</template>
-          <el-menu-item index="3-0"><router-link to="/urltest">url测试</router-link></el-menu-item>
           <el-menu-item index="3-1"><router-link to="/nginx">nginx</router-link></el-menu-item>
           <el-menu-item index="3-2"><router-link to="/weblogic">weblogic</router-link></el-menu-item>
           <el-menu-item index="3-3"><router-link to="/memcached">memcached</router-link></el-menu-item>

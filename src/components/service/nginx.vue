@@ -19,7 +19,37 @@
     </el-row>
     </el-tab-pane>
 
-    <el-tab-pane label="IP地址屏蔽" name="group">
+    <el-tab-pane label="后台服务管理" name="backupservice">
+    <el-row :gutter="5">
+      <el-col :span="3">
+      <el-select v-model="backstage.zone" placeholder="区域">
+        <el-option label="DMZ域" value="dmz"></el-option>
+        <el-option label="核心域" value="cd"></el-option>
+      </el-select>
+      </el-col>
+
+      <el-col :span="5">
+        <el-input v-model="backstage.ip" placeholder="服务器IP" clearable></el-input>
+      </el-col>
+      <el-col :span="3">
+        <el-select v-model="backstage.port" placeholder="服务器端口">
+          <el-option label="all" value="all"></el-option>
+          <el-option label="17101" value="17101"></el-option>
+          <el-option label="17102" value="17102"></el-option>
+          <el-option label="17103" value="17103"></el-option>
+          <el-option label="17104" value="17104"></el-option>
+          <el-option label="17105" value="17105"></el-option>
+          <el-option label="17106" value="17106"></el-option>
+        </el-select>
+      </el-col>
+    <el-col :span="10">
+      <el-button type="primary" v-on:click="nginxManager('shield')">屏蔽后台</el-button>
+      <el-button type="primary" v-on:click="nginxManager('cancelShield')">解除屏蔽</el-button>
+      </el-col>
+    </el-row>
+    </el-tab-pane>
+
+    <el-tab-pane label="IP地址屏蔽" name="iplock">
     <el-row :gutter="5">
       <el-col :span="6">
       <el-input v-model="lockip" placeholder="锁定IP" clearable></el-input>
@@ -30,7 +60,6 @@
       <el-button type="primary" v-on:click="nginxManager('showlock')">查看当前已锁定IP</el-button>
       </el-col>
     </el-row>
-
     </el-tab-pane>
 
   </el-tabs>
@@ -64,6 +93,11 @@
         activeName2: 'single',
         nginxip: '',
         lockip: '',
+        backstage: {
+          ip: '',
+          port: '',
+          zone: '',
+        }
       }
     },
     methods: {
@@ -89,6 +123,11 @@
           data.content.ip = this.lockip
         } else if (mess == "showlock") {
           delete data.content.server
+        } else if (mess == "shield" || mess == "cancelShield") {
+          delete data.content.server
+          data.content.ip = this.backstage.ip
+          data.content.port = this.backstage.port
+          data.content.zone = this.backstage.zone
         }
 
         console.log(data)
@@ -121,6 +160,10 @@
                 this.$notify({type: 'success', title: '成功',message: '显示锁定IP'});
                 this.displayData = true;
                 this.rundata = '<pre>'+res.data.redata+'</pre>';
+              } else if (mess == "shield") {
+                this.$notify({type: 'success', title: '成功',message: '屏蔽服务成功'});
+              } else if (mess == "cancelShield") {
+                this.$notify({type: 'success', title: '成功',message: '解除屏蔽成功'});
               }
             } else {
               this.$notify({type: 'error', title: '失败',message: res.data.redata});

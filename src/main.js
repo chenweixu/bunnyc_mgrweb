@@ -12,9 +12,8 @@ import blank from './components/blank.vue'
 import hostcmd from './components/host/remotecmd.vue'
 import hostshow from './components/host/show.vue'
 
-import networkping from './components/network/ping.vue'
-import networkurltest from './components/network/urltest.vue'
-import networkportcheck from './components/network/portcheck.vue'
+import networktest from './components/network/networktest.vue'
+// import networkurltest from './components/network/urltest.vue'
 
 import weblogic from './components/service/weblogic.vue'
 import nginx from './components/service/nginx.vue'
@@ -33,9 +32,7 @@ const routes = [
   { path: '/', component: blank },
   { path: '/index', component: blank },
   { path: '/hostcmd', component: hostcmd },
-  { path: '/networkping', component: networkping },
-  { path: '/urltest', component: networkurltest },
-  { path: '/portcheck', component: networkportcheck },
+  { path: '/networktest', component: networktest },
   { path: '/hostshow', component: hostshow },
   { path: '/weblogic', component: weblogic },
   { path: '/nginx', component: nginx },

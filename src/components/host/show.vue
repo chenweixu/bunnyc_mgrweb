@@ -56,7 +56,7 @@
             "content": {
                 "unit": mess,
                 "task": "remote",
-                "server": this.server,
+                "ip": this.server,
                 }
         };
 
