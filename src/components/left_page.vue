@@ -12,7 +12,7 @@
           <el-menu-item index="1-1"><router-link to="/hostcmd">远程指令</router-link></el-menu-item>
           <el-menu-item index="1-2"><router-link to="/hostshow">系统监控</router-link></el-menu-item>
           <el-menu-item index="1-3"><router-link to="/index">ssh登陆</router-link></el-menu-item>
-          <el-menu-item index="1-4"><router-link to="/index">文件上传/下载</router-link></el-menu-item>
+          <el-menu-item index="1-4"><router-link to="/file">文件上传/下载</router-link></el-menu-item>
       </el-submenu>
       <el-submenu index="2">
         <template slot="title">网络管理</template>
@@ -37,6 +37,8 @@
 
       <el-menu-item index="5"><router-link to="/other">其它系统</router-link></el-menu-item>
       <el-menu-item index="6"><router-link to="/index">运维文档</router-link></el-menu-item>
+      <!-- <el-menu-item index="7"><router-link to="/testui">测试页-ui</router-link></el-menu-item> -->
+      <!-- <el-menu-item index="7"><router-link to="/testapi">测试页-API</router-link></el-menu-item> -->
       </div>
     </el-menu>
   </el-aside>

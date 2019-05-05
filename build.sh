@@ -8,7 +8,7 @@ container=bmgrweb
 img_dir=/data/share/docker_images
 
 rm dist/*
-npm start
+npm run build
 
 docker stop $container
 docker rm $container

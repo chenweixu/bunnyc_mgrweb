@@ -2,9 +2,22 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 var webpack = require('webpack');
 
+let devtool_model;
+let build_mode;
+if (process.env.NODE_ENV === 'production') {
+    build_mode = 'production';
+    devtool_model = 'null';
+} else if (process.env.NODE_ENV === 'development') {
+    build_mode = 'development';
+    devtool_model = 'source-map';
+}
+
+// console.log(devtool_model)
+// console.log(build_mode)
+
 module.exports = {
-    mode: 'development',
-    // mode: 'production',
+    devtool: devtool_model,
+    mode: build_mode,
     entry:  {
         // vendor: './src/vendor',
         index: __dirname + "/src/main.js"
@@ -25,9 +38,10 @@ module.exports = {
   },
 
     resolve: {
-        alias: {
-            'vue$': 'vue/dist/vue.esm.js'
-        }
+        // 解析模块请求的选项
+        // alias: {
+        //     'vue': 'vue/dist/vue.esm.js'
+        // }
     },
 
     // 模块加载器
@@ -60,17 +74,19 @@ module.exports = {
                 ],
             },
 
+
             // {
-            //     test: /\.vue$/,
-            //     use: ['vue-loader']
-            //     // use: {
-            //     //     loader: "vue-loader",
-            //     //     options: {
-            //     //         presets: [
-            //     //             "vue-app"
-            //     //         ]
-            //     //     }
-            //     // }
+            //     test: /\.js/,
+            //     use: [{
+            //         loader: 'babel-loader',
+            //         options: {//如果有这个设置则不用再添加.babelrc文件进行配置
+            //             "babelrc": false,// 不采用.babelrc的配置
+            //             "plugins": [
+            //                 "dynamic-import-webpack"
+            //             ]
+            //         }
+            //     }],
+            //     exclude: /node_modules/,
             // },
 
             {

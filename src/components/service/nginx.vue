@@ -1,7 +1,6 @@
 <template>
 <div id="nginx" style="width: 100%">
   <el-main>
-<h2>nginx manager</h2>
   <el-tabs v-model="activeName2" type="border-card" @tab-click="handleClick">
 
     <el-tab-pane label="应用管理" name="single">

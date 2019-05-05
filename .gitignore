@@ -6,7 +6,7 @@ devel.yaml
 conf.yaml
 conf.json
 dist/*
-other.vue
+conf_other.json
 
 # Logs
 logs
