@@ -26,4 +26,6 @@ docker run --name $container -h $container --net="host" -d chenwx/$container:$ve
 # docker run --name bmgrweb -h bmgrweb --net="host" -d chenwx/bmgrweb:0.1.4
 
 docker save chenwx/$container:$version > $img_dir/chenwx_${container}_${version}.tar
+
+rm $img_dir/chenwx_${container}_${version}.tar.gz
 gzip $img_dir/chenwx_${container}_${version}.tar
