@@ -24,6 +24,8 @@
       <el-select v-model="backstage.zone" placeholder="区域">
         <el-option label="DMZ域" value="dmz"></el-option>
         <el-option label="核心域" value="cd"></el-option>
+        <el-option label="日志" value="log"></el-option>
+        <el-option label="登出" value="logout"></el-option>
       </el-select>
       </el-col>
 

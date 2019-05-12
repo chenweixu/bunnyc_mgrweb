@@ -124,7 +124,7 @@
   var opsurl = 'api/v2/service'
   var data
   var checkData
-  var new_checkData = []
+  var new_checkData
 
   export default {
     data() {
@@ -258,6 +258,7 @@
               } else if (mess=='check') {
                 this.displayCheckTableData = true;
                 checkData = res.data.redata
+                new_checkData = []          // 初始化检查数组
                 for (var x in checkData) {
                     new_checkData.push(
                         {'id': x,'url': checkData[x][0],'status': checkData[x][1]}
