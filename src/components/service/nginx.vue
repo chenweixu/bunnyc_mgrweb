@@ -55,10 +55,11 @@
       <el-col :span="6">
       <el-input v-model="lockip" placeholder="锁定IP" clearable></el-input>
     </el-col>
-    <el-col :span="10">
+    <el-col :span="15">
       <el-button type="primary" v-on:click="nginxManager('lock')">锁定</el-button>
-      <el-button type="primary" v-on:click="nginxManager('ulock')">解锁</el-button>
+      <el-button type="primary" v-on:click="nginxManager('unlock')">解锁</el-button>
       <el-button type="primary" v-on:click="nginxManager('showlock')">查看当前已锁定IP</el-button>
+      <el-button type="primary" v-on:click="nginxManager('clearlock')">清除全部锁定IP</el-button>
       </el-col>
     </el-row>
     </el-tab-pane>
@@ -116,16 +117,16 @@
             "content": {
                 "unit": "nginx",
                 "task": mess,
-                "server": this.server,
                 }
         };
-        if (mess == "lock" || mess == "ulock") {
-          delete data.content.server
+
+        if (mess == "lock" || mess == "unlock") {
           data.content.ip = this.lockip
-        } else if (mess == "showlock") {
-          delete data.content.server
+        } else if (
+          mess == "start" || mess == "stop" || mess == "reload" ||
+          mess == "show_access_log" || mess == "show_error_log") {
+            data.content.server = this.server
         } else if (mess == "shield" || mess == "cancelShield") {
-          delete data.content.server
           data.content.ip = this.backstage.ip
           data.content.port = this.backstage.port
           data.content.zone = this.backstage.zone
@@ -155,8 +156,10 @@
                 // this.rundata = res.data.redata;
               } else if (mess == "lock") {
                 this.$notify({type: 'success', title: '成功',message: '锁定IP成功'});
-              } else if (mess == "ulock") {
+              } else if (mess == "unlock") {
                 this.$notify({type: 'success', title: '成功',message: '解锁IP成功'});
+              } else if (mess == "clearlock") {
+                this.$notify({type: 'success', title: '成功',message: '清理全部锁定成功'});
               } else if (mess == "showlock") {
                 this.$notify({type: 'success', title: '成功',message: '显示锁定IP'});
                 this.displayData = true;

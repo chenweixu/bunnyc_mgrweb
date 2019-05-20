@@ -9,7 +9,7 @@
       <el-col :span="5">
       <el-input v-model="single_service.server" placeholder="目标主机ipv4" clearable></el-input>
       </el-col>
-      <el-col :span="5">
+      <el-col :span="4">
       <el-select v-model="single_service.server_num" placeholder="请选择服务">
         <el-option
           v-for="item in single_service.servicenumberoptions"
@@ -20,12 +20,12 @@
       </el-select>
     </el-col>
 
-      <el-col :span="11">
+      <el-col :span="15">
       <el-button type="primary" v-on:click="weblogicManager('start')">启动</el-button>
       <el-button type="primary" v-on:click="weblogicManager('stop')">停止</el-button>
-      <el-button type="primary"v-on:click="weblogicManager('accesslog')">访问日志</el-button>
-      <el-button type="primary"v-on:click="weblogicManager('projectlog')">业务日志</el-button>
-      <el-button type="primary"v-on:click="weblogicManager('gclog')">GC日志</el-button>
+      <el-button type="primary" v-on:click="weblogicManager('accesslog')">访问日志</el-button>
+      <el-button type="primary" v-on:click="weblogicManager('projectlog')">业务日志</el-button>
+      <el-button type="primary" v-on:click="weblogicManager('gclog')">GC日志</el-button>
       </el-col>
     </el-row>
     </el-tab-pane>
