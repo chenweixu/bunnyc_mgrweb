@@ -110,6 +110,7 @@
             "obj": "service",
             "content": {
                 "unit": "memcached",
+                "types": "single",
                 "task": mess,
                 "server": this.server,
                 "port": this.port,

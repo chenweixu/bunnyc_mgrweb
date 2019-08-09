@@ -86,9 +86,9 @@
       getManager (mess) {
         this.displayData = false
         if (mess == 'ping') {
-          data = {ip: this.pingIP}
+          data = {ping: this.pingIP}
         } else if (mess == 'url') {
-          data = {url: this.testurl}
+          data = {checkurl: this.testurl}
         }
         console.log(data)
         axios.get(opsurl,{params: data})
@@ -116,7 +116,7 @@
             "obj": "network",
             "content": {
                 "task": "check_port",
-                "sip": this.porttest.sip,
+                "source": this.porttest.sip,
                 "ip": this.porttest.ip,
                 "port": this.porttest.port,
                 }

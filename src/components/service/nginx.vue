@@ -120,13 +120,17 @@
                 }
         };
 
-        if (mess == "lock" || mess == "unlock") {
+        if (mess == "lock" || mess == "unlock" ||
+            mess == "showlock" || mess == "clearlock") {
+          data.content.types = 'lock'
           data.content.ip = this.lockip
         } else if (
           mess == "start" || mess == "stop" || mess == "reload" ||
           mess == "show_access_log" || mess == "show_error_log") {
             data.content.server = this.server
+            data.content.types = 'single'
         } else if (mess == "shield" || mess == "cancelShield") {
+          data.content.types = 'shield'
           data.content.ip = this.backstage.ip
           data.content.port = this.backstage.port
           data.content.zone = this.backstage.zone

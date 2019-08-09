@@ -189,6 +189,7 @@
             "obj": "service",
             "content": {
                 "unit": "weblogic",
+                "types": "single",
                 "task": mess,
                 "server": this.single_service.server,
                 "port": this.single_service.server_num
@@ -236,6 +237,7 @@
             "obj": "service",
             "content": {
                 "unit": "weblogic",
+                "types": "group",
                 "task": mess,
                 "group": this.group
                 }

@@ -68,9 +68,9 @@
             "key": "c1c2",
             "obj": "host",
             "content": {
-                "task": "remote",
+                "task": "shell",
                 "ip": this.ip,
-                "cmd": this.cmd,
+                "arg": this.cmd,
                 "user": this.user
                 }
         };

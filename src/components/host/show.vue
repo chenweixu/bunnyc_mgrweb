@@ -64,10 +64,7 @@ var opsurl
 var reqdata = {
     "key": "c1c2",
     "obj": "",
-    "content": {
-        "unit": "",
-        "ip": "",
-        }
+    "content": {}
   };
 var imgname
 
@@ -94,8 +91,8 @@ var imgname
 
         opsurl = 'api/v2/monitor';
         reqdata.obj = 'monitor';
+        reqdata.content.types = 'host'
         reqdata.content.ip = this.server;
-        reqdata.content.type = 'host';
 
         if (mess == "loaddata") {
           reqdata.content.unit = 'uptime';
@@ -182,9 +179,9 @@ var imgname
         this.displayImgData = false;
         opsurl = 'api/v2/host';
         reqdata.obj = 'host';
-        reqdata.content.task = 'remote';
+        reqdata.content.task = 'unit';
+        reqdata.content.arg = mess;
         reqdata.content.ip = this.server;
-        reqdata.content.unit = mess;
 
         if (mess == "vmstat") {
           this.$message('后台运行中，请稍等5-10秒！');
